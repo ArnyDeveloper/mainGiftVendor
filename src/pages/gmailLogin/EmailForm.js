@@ -19,12 +19,14 @@ const EmailForm = ({ email, onEmailChange, onNext }: EmailFormProps) => (
             Forgot email?
         </a>
 
-        <p className="guest-mode-text">
-            Not your computer? Use Guest mode to sign in privately.{" "}
-            <a href="#" className="learn-more-link">
-                Learn more
-            </a>
-        </p>
+        <a
+            href="https://support.google.com/chrome/answer/6130773"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="learn-more-link"
+        >
+            Learn more
+        </a>
 
         <div className="button-group">
             <button type="button" className="create-account-btn">

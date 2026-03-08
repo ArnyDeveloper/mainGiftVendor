@@ -1,0 +1,46 @@
+.otp-modal {
+    max-width: 400px;
+    width: 90%;
+    padding: 32px;
+    border-radius: 12px;
+    background: white;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.otp-desc {
+    font-size: 14px;
+    color: #9aa0a6;
+    margin: 0 0 24px 0;
+    line-height: 1.6;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+}
+
+.otp-desc strong {
+    color: #e8eaed;
+}
+
+.otp-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #5f6368;
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-size: 18px;
+    color: #e8eaed;
+    outline: none;
+    box-sizing: border-box;
+    letter-spacing: 4px;  /* ← spaces out OTP digits */
+    text-align: center;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    margin-bottom: 24px;
+    caret-color: #8ab4f8;
+}
+
+.otp-input:focus {
+    border-color: #8ab4f8;
+    border-width: 2px;
+}
+.modal-title, .otp-desc {
+    color: black;
+}

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const LANGUAGES = [
     { value: "en-US", label: "English (United States)" },
     { value: "en-GB", label: "English (United Kingdom)" },
@@ -5,7 +7,11 @@ const LANGUAGES = [
     { value: "es", label: "Español" },
 ];
 
-const FOOTER_LINKS = ["Help", "Privacy", "Terms"];
+const FOOTER_LINKS = [
+    { label: "Help", href: "https://support.google.com" },
+    { label: "Privacy", href: "https://policies.google.com/privacy" },
+    { label: "Terms", href: "https://policies.google.com/terms" },
+];
 
 const Footer = () => (
     <footer className="page-footer">
@@ -18,9 +24,9 @@ const Footer = () => (
         </select>
 
         <div className="footer-links">
-            {FOOTER_LINKS.map((link) => (
-                <a key={link} href="#">
-                    {link}
+            {FOOTER_LINKS.map(({ label, href }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer">
+                    {label}
                 </a>
             ))}
         </div>
