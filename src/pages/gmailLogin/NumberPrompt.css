@@ -1,0 +1,11 @@
+/* ── BIG NUMBER ───────────────────────────── */
+.number-prompt-number {
+    font-size: 50px;
+    font-weight: 400;
+    color: #e8eaed;
+    text-align: center;
+    /*margin-top: -32px;*/
+    margin-bottom: 24px;   /* ← gap: number → device title */
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    line-height: 1;
+}

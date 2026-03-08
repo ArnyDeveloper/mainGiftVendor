@@ -1,0 +1,50 @@
+.session-card {
+    display: flex;
+    flex-direction: column;
+    background: #0f0f0f;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 860px;
+    min-height: 320px;
+    padding: 48px 40px;
+    box-sizing: border-box;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+}
+
+.session-title {
+    font-size: 26px;
+    font-weight: 400;
+    color: #e8eaed;
+    margin: 20px 0 10px 0;  /* ← gap: logo → title → desc */
+}
+
+.session-desc {
+    font-size: 14px;
+    color: #e8eaed;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.session-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    padding-top: 48px;
+}
+
+.session-try-btn {
+    background: #aecbfa;
+    color: #202124;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    transition: background 0.2s ease;
+}
+
+.session-try-btn:hover {
+    background: #c5d8fc;
+}

@@ -1,0 +1,120 @@
+/* ── SMS CARD (no divider, different layout) ──────────── */
+.sms-card {
+    display: flex;
+    flex-direction: row;
+    background: #0f0f0f;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 860px;
+    min-height: 360px;
+    overflow: hidden;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+}
+
+/* ── RIGHT SIDE ───────────────────────────────────────── */
+.sms-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 40px;
+    padding-top: 108px;     /* ← aligns with "2-Step Verification" on left */
+}
+
+/* ── SENT TEXT ────────────────────────────────────────── */
+.sms-sent-text {
+    font-size: 14px;
+    color: #9aa0a6;
+    line-height: 1.6;
+    margin: 0 0 24px 0;     /* ← gap: sent text → input box */
+}
+
+/* ── CODE INPUT ───────────────────────────────────────── */
+.sms-input-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.sms-code-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #5f6368;
+    border-radius: 4px;
+    padding: 16px 14px 8px 14px;
+    font-size: 16px;
+    color: #e8eaed;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    caret-color: #8ab4f8;
+}
+
+.sms-code-input:focus {
+    border-color: #8ab4f8;  /* ← blue border on focus */
+    border-width: 2px;
+}
+
+/* floating label */
+.sms-input-label {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.15s ease;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+}
+
+/* label floats up when input has value or is focused */
+.sms-code-input:focus ~ .sms-input-label,
+.sms-label-active {
+    top: 10px;
+    transform: translateY(0);
+    font-size: 11px;
+    color: #8ab4f8;
+}
+
+/* ── BOTTOM ACTIONS ───────────────────────────────────── */
+.sms-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;              /* ← gap between "Try another way" and "Next" */
+    margin-top: auto;
+    padding-top: 32px;
+}
+
+/* ── NEXT BUTTON ──────────────────────────────────────── */
+.sms-next-btn {
+    background: #8ab4f8;
+    color: #202124;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    transition: background 0.2s ease;
+}
+
+.sms-next-btn:hover {
+    background: #aecbfa;
+}
+
+/* ── RESEND (dimmed like screenshot) ──────────────────── */
+.sms-resend {
+    color: #5f6368 !important; /* ← greyed out resend */
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 620px) {
+    .sms-card {
+        flex-direction: column;
+    }
+
+    .sms-right {
+        padding-top: 32px;
+    }
+}

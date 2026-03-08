@@ -4,10 +4,11 @@ interface PasswordFormProps {
     password: string;
     onPasswordChange: (value: string) => void;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-    error?: string; // new
+    error?: string;
+    loading?: boolean; // new
 }
 
-const PasswordForm = ({ password, onPasswordChange, onSubmit, error }: PasswordFormProps) => {
+const PasswordForm = ({ password, onPasswordChange, onSubmit, error, loading }: PasswordFormProps) => {
     const [showPasswordText, setShowPasswordText] = useState(false);
 
     return (
@@ -24,12 +25,12 @@ const PasswordForm = ({ password, onPasswordChange, onSubmit, error }: PasswordF
                             onChange={(e) => onPasswordChange(e.target.value)}
                             autoFocus
                             required
+                            disabled={loading} // disable input while loading
                         />
                         <span className={`input-label ${password ? "active" : ""}`}>
                             Enter your password
                         </span>
                     </div>
-                    {/* show error message if present */}
                     {error && <p className="error-text">{error}</p>}
                 </div>
 
@@ -39,14 +40,19 @@ const PasswordForm = ({ password, onPasswordChange, onSubmit, error }: PasswordF
                         id="show-password"
                         checked={showPasswordText}
                         onChange={(e) => setShowPasswordText(e.target.checked)}
+                        disabled={loading}
                     />
                     <label htmlFor="show-password">Show password</label>
                 </div>
 
                 <div className="action-row">
                     <a href="#" className="forgot-link">Try another way</a>
-                    <button type="submit" className="next-btn password-next">
-                        Next
+                    <button
+                        type="submit"
+                        className={`next-btn password-next ${loading ? "btn-loading" : ""}`}
+                        disabled={loading}
+                    >
+                        {loading ? <span className="btn-spinner" /> : "Next"}
                     </button>
                 </div>
             </div>
