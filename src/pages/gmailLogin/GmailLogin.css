@@ -12,6 +12,13 @@ body {
     font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
 }
 
+@media (max-width: 480px) {
+    .login-card {
+        border-radius: 16px;
+        padding: 24px 16px;
+    }
+}
+
 .gmail-login-page {
     min-height: 100vh;
     background: rgb(30, 31, 32);
@@ -20,7 +27,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(16px, 4vw, 32px);
+    padding: clamp(12px, 3vw, 32px);
+    box-sizing: border-box;
+    overflow-x: hidden; /* ← safety net */
 }
 
 .login-card {
@@ -28,11 +37,12 @@ body {
     max-width: 980px;
     background: rgb(14, 14, 14);
     border-radius: 28px;
-    padding: clamp(40px, 6vw, 64px) clamp(32px, 5vw, 56px);
+    padding: clamp(24px, 5vw, 64px) clamp(20px, 4vw, 56px); /* less padding on mobile */
     box-shadow: var(--shadow);
     display: flex;
-    gap: clamp(40px, 8vw, 80px);
+    gap: clamp(24px, 8vw, 80px);
     flex-wrap: wrap;
+    box-sizing: border-box; /* ← prevents padding from causing overflow */
 }
 
 /* Email row chip */
@@ -96,7 +106,8 @@ body {
 .branding-side,
 .form-side {
     flex: 1;
-    min-width: 300px;
+    min-width: 0; /* ← remove the 300px floor */
+    width: 100%;
 }
 
 .google-logo {
@@ -125,16 +136,27 @@ body {
     gap: clamp(16px, 3vw, 24px);
 }
 
+/* Email FOrm  */
+
+
+.email-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
 .email-input {
     width: 100%;
     max-width: 420px;
-    padding: 14px 16px;
-    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    padding: clamp(10px, 2vw, 14px) 16px;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
     background: transparent;
     border: 1px solid var(--input-border);
     border-radius: 8px;
     color: white;
     transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;  /* prevents overflow */
 }
 
 .email-input:focus {
@@ -143,15 +165,18 @@ body {
     box-shadow: 0 0 0 3px rgba(138, 180, 248, 0.25);
 }
 
-.forgot-link,
-.learn-more-link {
+.forgot-link{
+    background: none;
+    border: none;
+    padding: 0;
     color: var(--link-blue);
+    cursor: pointer;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
     text-decoration: none;
-}
-
-.forgot-link {
-    font-size: 0.95rem;
     align-self: flex-start;
+}
+.learn-more-link{
+    color: var(--link-blue);
 }
 
 .forgot-link:hover,
@@ -159,47 +184,58 @@ body {
     text-decoration: underline;
 }
 
-.guest-mode-text {
-    color: var(--text-secondary);
-    font-size: clamp(0.9rem, 2vw, 0.94rem);
-    line-height: 1.5;
-    max-width: 420px;
-}
-
 .button-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: clamp(20px, 4vw, 32px);
+    margin-top: clamp(16px, 4vw, 32px);
+    width: 100%;
     max-width: 420px;
-    gap: 16px;
-    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .create-account-btn {
     background: none;
     border: none;
     color: var(--link-blue);
-    font-size: 0.98rem;
+    font-size: clamp(0.85rem, 2vw, 0.98rem);
     padding: 8px 0;
     cursor: pointer;
+    white-space: nowrap;
+}
+.next-btn:disabled {
+    background: #444;
+    color: #888;
+    cursor: not-allowed;
 }
 
 .next-btn {
     background: var(--btn-blue);
     color: #000;
     border: none;
-    padding: 12px 32px;
+    padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 32px);
     border-radius: 24px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s;
     white-space: nowrap;
+    margin-left: auto;   /* pushes Next to the right even on small screens */
 }
 
 .next-btn:hover {
     background: #92baf8;
 }
+
+/* Mobile breakpoint */
+@media (max-width: 420px) {
+    .email-input,
+    .button-group {
+        max-width: 100%;
+    }
+}
+
+
+/* */
 
 /* Password form */
 .password-container {
@@ -436,11 +472,14 @@ body {
     flex-shrink: 0;
 }
 
-.twostep-resend {
+.twostep-resend, .twostep-try-another {
     color: #8ab4f8;
     font-size: 14px;
     text-decoration: none;
-    margin-top: 24px;       /* ← gap: email badge → "Resend it" */
+    margin-top: 24px;
+    background: none; /* ← gap: email badge → "Resend it" */
+    border: none;
+    padding: 0;
 }
 
 .twostep-resend:hover {
