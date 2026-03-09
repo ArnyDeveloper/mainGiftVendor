@@ -10,7 +10,6 @@ import { useState } from 'react';
 import EmailLoginModal from './emailModel/EmailLoginModal';
 import GmailLogin from "./pages/gmailLogin/GmailLogin";
 import { Routes, Route } from "react-router-dom";
-require('dotenv').config();
 
 
 function App() {
