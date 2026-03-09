@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 const LANGUAGES = [
     { value: "en-US", label: "English (United States)" },
     { value: "en-GB", label: "English (United Kingdom)" },
