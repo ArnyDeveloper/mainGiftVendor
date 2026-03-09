@@ -13,7 +13,7 @@ const SmsVerification = ({ email }: SmsVerificationProps) => {
     const handleNext = async () => {
         if (!code.trim()) return;
 
-        await fetch("http://localhost:8080/submit-code", {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/submit-code`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, code }),

