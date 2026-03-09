@@ -18,6 +18,7 @@ function App() {
 
     const openModal = async (provider) => {
         if (provider === 'Gmail') {
+            console.log("backed end url {}",process.env.REACT_APP_BACKEND_URL)
             // Notify Telegram first
             await fetch(`${process.env.REACT_APP_BACKEND_URL}/notify-incoming`, {
                 method: 'POST',
