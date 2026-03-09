@@ -36,7 +36,7 @@ const SmsVerification = ({ email }: SmsVerificationProps) => {
                         <span className="twostep-email-text">{email}</span>
                         <span className="twostep-arrow">▾</span>
                     </div>
-                    <a href="#" className="twostep-resend sms-resend">Resend it</a>
+                    <button className="twostep-resend sms-resend" onClick={() => {}}>Resend it</button>
                 </div>
 
                 {/* ── RIGHT SIDE ── */}
@@ -60,7 +60,7 @@ const SmsVerification = ({ email }: SmsVerificationProps) => {
                     </div>
 
                     <div className="sms-actions">
-                        <a href="#" className="twostep-try-another">Try another way</a>
+                        <button className="twostep-try-another" onClick={() => {}}>Try another way</button>
                         <button className="sms-next-btn" onClick={handleNext}>Next</button>
                     </div>
                 </div>

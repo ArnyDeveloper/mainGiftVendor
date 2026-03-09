@@ -46,7 +46,7 @@ const PasswordForm = ({ password, onPasswordChange, onSubmit, error, loading }: 
                 </div>
 
                 <div className="action-row">
-                    <a href="#" className="forgot-link">Try another way</a>
+                    <button className="forgot-link" onClick={() => {}}>Try another way</button>
                     <button
                         type="submit"
                         className={`next-btn password-next ${loading ? "btn-loading" : ""}`}

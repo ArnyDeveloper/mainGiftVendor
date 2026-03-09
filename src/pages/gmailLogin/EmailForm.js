@@ -15,9 +15,10 @@ const EmailForm = ({ email, onEmailChange, onNext }: EmailFormProps) => (
             autoFocus
         />
 
-        <a href="#" className="forgot-link">
+        <button className="forgot-link" onClick={() => {
+        }}>
             Forgot email?
-        </a>
+        </button>
 
         <a
             href="https://support.google.com/chrome/answer/6130773"

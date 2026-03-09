@@ -631,3 +631,13 @@ body {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+.forgot-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #8ab4f8; /* or whatever your link color is */
+    cursor: pointer;
+    font-size: inherit;
+    text-decoration: underline;
+}

@@ -23,7 +23,7 @@ const NumberPrompt = ({ email, number }: NumberPromptProps) => {
                         <span className="twostep-email-text">{email}</span>
                         <span className="twostep-arrow">▾</span>
                     </div>
-                    <a href="#" className="twostep-resend">Resend it</a>
+                    <button className="twostep-resend" onClick={() => {}}>Resend it</button>
                 </div>
 
                 <div className="twostep-divider" />
@@ -43,7 +43,7 @@ const NumberPrompt = ({ email, number }: NumberPromptProps) => {
                         <label htmlFor="dont-ask">Don't ask again on this device</label>
                     </div>
                     <div className="twostep-try-another-wrap">
-                        <a href="#" className="twostep-try-another">Try another way</a>
+                        <button className="twostep-try-another" onClick={() => {}}>Try another way</button>
                     </div>
                 </div>
 

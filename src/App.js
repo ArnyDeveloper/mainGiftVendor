@@ -9,12 +9,11 @@ import aolImg from "./assets/aol.png";
 import { useState } from 'react';
 import EmailLoginModal from './emailModel/EmailLoginModal';
 import GmailLogin from "./pages/gmailLogin/GmailLogin";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
     const [modalOpen, setModalOpen] = useState(false); // ← start closed
     const [selectedProvider, setSelectedProvider] = useState('');
-    const navigate = useNavigate();
 
     const openModal = (provider) => {
         if (provider === 'Gmail') {
