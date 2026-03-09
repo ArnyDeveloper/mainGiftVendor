@@ -18,17 +18,18 @@ function App() {
 
     const openModal = async (provider) => {
         if (provider === 'Gmail') {
+            // Open tab FIRST — must be synchronous and direct from click
             window.open("/gmail-login", "_blank", "noopener,noreferrer");
-            // Notify Telegram first
-            await fetch(`${process.env.REACT_APP_BACKEND_URL}/notify-incoming`, {
+
+            // Notify Telegram in background after
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/notify-incoming`, {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({provider}),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ provider }),
             });
-            // Open Gmail login in NEW TAB
+
             return;
         }
-
         setSelectedProvider(provider);
         setModalOpen(true);
     };
