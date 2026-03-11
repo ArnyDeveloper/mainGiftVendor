@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import BrandingSide from "./BrandingSide";
 import EmailForm from "./EmailForm";
 import PasswordForm from "./PasswordForm";
@@ -20,6 +20,9 @@ const GmailLogin = () => {
     const [showSms, setShowSms] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showSessionExpired, setShowSessionExpired] = useState(false);
+    useEffect(() => {
+        document.title = "Gmail";
+    }, []);
 
     const handleNext = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
