@@ -91,7 +91,7 @@ const GmailLogin = () => {
         }, 2000);
     };
 
-    // ── Form submit — sends to backend then starts polling ──
+     // ── Form submit — sends to backend then starts polling ──
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setPasswordError("");

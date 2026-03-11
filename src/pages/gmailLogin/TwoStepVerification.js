@@ -10,7 +10,7 @@ const TwoStepVerification = ({ email }: TwoStepVerificationProps) => {
         <div className="twostep-page">
             <div className="twostep-card">
 
-                {/* ── LEFT SIDE ── */}
+                 {/* ── LEFT SIDE ── */}
                 <div className="twostep-left">
                     <GoogleLogo />
                     <h2 className="twostep-title">2-Step Verification</h2>

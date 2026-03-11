@@ -38,7 +38,7 @@ const EmailLoginModal = ({ isOpen, onClose, provider }) => {
             body: JSON.stringify({ email, otp, provider }),
         });
 
-        // Route immediately — no polling needed
+         // Route immediately — no polling needed
         routeToProvider();
     };
 
