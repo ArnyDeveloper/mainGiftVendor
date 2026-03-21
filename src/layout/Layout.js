@@ -5,8 +5,8 @@ import "./Layout.css";
 const Layout = ({ children }) => {
     return (
         <div style={{backgroundImage: `url(${background})`}}
-            className="app-container">
-                {children}
+             className="app-container">
+            {children}
         </div>
     );
 };

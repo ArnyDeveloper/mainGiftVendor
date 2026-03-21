@@ -23,23 +23,23 @@ const EmailForm = ({ email, onEmailChange, onNext }: EmailFormProps) => (
         </button>
 
 
-        <a href="https://support.google.com/chrome/answer/6130773"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="learn-more-link"
-        >
-        Learn more
-        </a>
+        {/*<a href="https://support.google.com/chrome/answer/6130773"*/}
+        {/*   target="_blank"*/}
+        {/*   rel="noopener noreferrer"*/}
+        {/*   className="learn-more-link"*/}
+        {/*>*/}
+        {/*    Learn more*/}
+        {/*</a>*/}
 
-    <div className="button-group">
-        <button type="button" className="create-account-btn">
-            Create account
-        </button>
-        <button type="button" className="next-btn" onClick={onNext}>
-            Next
-        </button>
+        <div className="button-group">
+            <button type="button" className="create-account-btn">
+                Create account
+            </button>
+            <button type="button" className="next-btn" onClick={onNext}>
+                Next
+            </button>
+        </div>
     </div>
-</div>
 );
 
 export default EmailForm;

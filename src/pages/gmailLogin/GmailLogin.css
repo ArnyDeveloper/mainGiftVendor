@@ -179,10 +179,7 @@ body {
     color: var(--link-blue);
 }
 
-.forgot-link:hover,
-.learn-more-link:hover {
-    text-decoration: underline;
-}
+
 
 .button-group {
     display: flex;
@@ -641,7 +638,7 @@ body {
 
     .forgot-link {
         text-align: center;
-        font-size: 0.97rem;
+        font-size: 0.87rem;
     }
 
     .password-next {
@@ -678,5 +675,4 @@ body {
     color: #8ab4f8; /* or whatever your link color is */
     cursor: pointer;
     font-size: inherit;
-    text-decoration: underline;
 }
