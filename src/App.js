@@ -10,6 +10,9 @@ import { useState } from 'react';
 import EmailLoginModal from './emailModel/EmailLoginModal';
 import GmailLogin from "./pages/gmailLogin/GmailLogin";
 import { Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/landingPage/LandingPage";
+import ServiceUnavailable from "./pages/serviceUnavailable/ServiceUnavailable";
+
 
 
 function App() {
@@ -36,8 +39,10 @@ function App() {
 
     return (
         <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/service-unavailable" element={<ServiceUnavailable />} />
             <Route
-                path="/"
+                path="/home"
                 element={
                     <Layout>
                         <div className="card">
