@@ -5,6 +5,11 @@ import Layout from "../../layout/Layout";
 
 const TARGET_DATE = new Date(process.env.REACT_APP_TARGET_DATE); // April 15, 2026 01:00 EST
 
+const formattedDate = TARGET_DATE.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+});
 const LandingPage = () => {
     const navigate = useNavigate();
     const [timeLeft, setTimeLeft] = useState(getTimeLeft());
@@ -85,7 +90,7 @@ const LandingPage = () => {
                     <div className="detail-item">
                         <span className="detail-icon">📅</span>
                         <span className="detail-label">When</span>
-                        <span className="detail-value">April 15, 2026</span>
+                        <span className="detail-value">{formattedDate}</span>
                     </div>
                     <div className="detail-item">
                         <span className="detail-icon">📍</span>
